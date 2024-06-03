@@ -12,9 +12,11 @@ class Rectangle:
         self.point2 = point2
 
     def __str__(self):
-        return f"Rectangular defined by \
-                Point1: {self.point1.x}, {self.point1.y} \
-                Point2: {self.point2.x}, {self.point2.y}"
+        return (
+            "Rectangular with coordinates"
+            f" ({self.point1.x}, {self.point1.y})"
+            f" ({self.point2.x}, {self.point2.y})"
+        )
 
     def area(self):
         """Calculate area of rectangle."""
