@@ -11,12 +11,22 @@ from rectangle import Rectangle, GuiRectangle
 class TestPointMethods(unittest.TestCase):
     """Test Point methods."""
 
-    def test_point_falls_in_rectangle(self):
-        """Test point falls in rectangle."""
+    def test_point_falls_in_rectangle_lower_to_upper_coordinates(self):
+        """Test point falls in rectangle defined with lower to upper coordinates."""
         rec_point1 = Point(0, 0)
         rec_point2 = Point(5, 5)
         rectangle = Rectangle(rec_point1, rec_point2)
         point = Point(1, 2)
+
+        point_falls_in_rec = point.falls_in_rectangle(rectangle)
+        self.assertTrue(point_falls_in_rec)
+
+    def test_point_falls_in_rectangle_upper_to_lower_coordinates(self):
+        """Test point falls in rectangle defined with upper to lower coordinates."""
+        rec_point1 = Point(10, 6)
+        rec_point2 = Point(3, 2)
+        rectangle = Rectangle(rec_point1, rec_point2)
+        point = Point(5, 4)
 
         point_falls_in_rec = point.falls_in_rectangle(rectangle)
         self.assertTrue(point_falls_in_rec)
