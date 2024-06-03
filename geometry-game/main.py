@@ -13,7 +13,7 @@ from rectangle import Rectangle
 rectangle = Rectangle(
     Point(randint(0, 9), randint(0, 9)), Point(randint(10, 19), randint(10, 19))
 )
-print(rectangle)
+
 print(
     "Rectangle coordinates:",
     rectangle.point1.x,
@@ -26,7 +26,7 @@ print(
 )
 
 user_point = Point(float(input("Guess X: ")), float(input("Guess Y: ")))
-user_area = float(input("Gues rectangle area: "))
+user_area = float(input("Guess rectangle area: "))
 
 print("Your point was inside the rectangle: ", user_point.falls_in_rectangle(rectangle))
 
