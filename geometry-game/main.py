@@ -7,11 +7,13 @@ Geometry game:
 """
 
 from random import randint
-from point import Point
-from rectangle import Rectangle
+from point import Point, GuiPoint
+from rectangle import GuiRectangle
+import turtle
 
-rectangle = Rectangle(
-    Point(randint(0, 9), randint(0, 9)), Point(randint(10, 19), randint(10, 19))
+# Create a rectangle
+rectangle = GuiRectangle(
+    Point(randint(0, 400), randint(0, 400)), Point(randint(10, 400), randint(10, 400))
 )
 
 print(
@@ -25,9 +27,20 @@ print(
     rectangle.point2.y,
 )
 
-user_point = Point(float(input("Guess X: ")), float(input("Guess Y: ")))
+# Get imputs from the user
+user_point = GuiPoint(float(input("Guess X: ")), float(input("Guess Y: ")))
 user_area = float(input("Guess rectangle area: "))
 
+# Print out the game result
 print("Your point was inside the rectangle: ", user_point.falls_in_rectangle(rectangle))
-
 print("Your areas was off by: ", abs(rectangle.area() - user_area))
+
+canvas = turtle.Turtle()
+
+# Draw a rectangle
+rectangle.draw(canvas=canvas)
+
+# Draw a point
+user_point.draw(canvas=canvas)
+
+turtle.done()

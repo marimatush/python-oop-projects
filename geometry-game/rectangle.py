@@ -21,3 +21,22 @@ class Rectangle:
     def area(self):
         """Calculate area of rectangle."""
         return (self.point2.x - self.point1.x) * (self.point2.y - self.point1.y)
+
+
+class GuiRectangle(Rectangle):
+    """Provides GUI for rectangle."""
+
+    def draw(self, canvas):
+        """Draws a rectangle on canvas."""
+        # Go to a starting coordinate
+        canvas.penup()
+        canvas.goto(self.point1.x, self.point1.y)
+
+        canvas.pendown()
+        canvas.forward(self.point2.x - self.point1.x)
+        canvas.left(90)  # Turn 90 degrees left
+        canvas.forward(self.point2.y - self.point1.y)
+        canvas.left(90)
+        canvas.forward(self.point2.x - self.point1.x)
+        canvas.left(90)
+        canvas.forward(self.point2.y - self.point1.y)

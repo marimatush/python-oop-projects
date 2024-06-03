@@ -27,3 +27,17 @@ class Point:
     def distance_from_point(self, point):
         """Calculate distance from a point."""
         return ((self.x - point.x) ** 2 + (self.y - point.y) ** 2) ** 0.5
+
+
+class GuiPoint(Point):
+    """Provides GUI for a point."""
+
+    def draw(self, canvas, size=5, color="red"):
+        """Draws a point on canvas."""
+        # Go to a starting coordinate
+        canvas.penup()
+        canvas.goto(self.x, self.y)
+
+        # Draw a dot
+        canvas.pendown()
+        canvas.dot(size, color)
