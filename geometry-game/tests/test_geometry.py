@@ -3,8 +3,9 @@ Tests for geometry game classes.
 """
 
 import unittest
-from point import Point
-from rectangle import Rectangle
+from unittest.mock import Mock
+from point import Point, GuiPoint
+from rectangle import Rectangle, GuiRectangle
 
 
 class TestPointMethods(unittest.TestCase):
@@ -40,6 +41,22 @@ class TestPointMethods(unittest.TestCase):
 
         self.assertAlmostEqual(calculated_distance, expected_distance, places=7)
 
+    def test_draw_point(self):
+        """Test drawing a point."""
+        canvas = Mock()
+
+        # Creating a GuiPoint instance
+        point = GuiPoint(50, 50)
+
+        # Calling the draw method
+        point.draw(canvas)
+
+        # Asserting canvas method calls with default parameters
+        canvas.penup.assert_called_once()
+        canvas.goto.assert_called_once_with(50, 50)
+        canvas.pendown.assert_called_once()
+        canvas.dot.assert_called_once_with(5, "red")
+
 
 class TestRectangleMethods(unittest.TestCase):
     """Test Rectangle methods."""
@@ -54,6 +71,24 @@ class TestRectangleMethods(unittest.TestCase):
         calculated_area = rectangle.area()
 
         self.assertEqual(calculated_area, expected_erea)
+
+    def test_draw_rectangle(self):
+        """Test drawing a rectangle."""
+        canvas = Mock()
+
+        # Creating a GuiRectangle instance
+        point1 = Point(0, 0)
+        point2 = Point(100, 100)
+        rectangle = GuiRectangle(point1, point2)
+
+        # Calling the draw method
+        rectangle.draw(canvas)
+
+        # Asserting canvas method calls with custom parameters
+        canvas.penup.assert_called_once()
+        canvas.goto.assert_called_once_with(0, 0)
+        canvas.pendown.assert_called_once()
+        canvas.left.assert_called_with(90)
 
 
 if __name__ == "__main__":
