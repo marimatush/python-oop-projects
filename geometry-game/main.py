@@ -43,4 +43,5 @@ rectangle.draw(canvas=canvas)
 # Draw a point
 user_point.draw(canvas=canvas)
 
+turtle.title("Geometry game")
 turtle.done()
