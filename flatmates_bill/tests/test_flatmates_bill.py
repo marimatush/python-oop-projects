@@ -58,23 +58,35 @@ class TestFlatmate(unittest.TestCase):
 class TestPdfReport(unittest.TestCase):
     """Test PdfReport class."""
 
-    def test_creating_pdf_report_object(self):
-        """Testing creating a new pdf report object."""
-        filename: str = str(uuid.uuid4())
+    def tearDown(self):
+        # Clean up any created files
+        if os.path.exists(self.filename):
+            os.remove(self.filename)
 
-        pdf_report = PdfReport(filename=filename)
-        self.assertEqual(pdf_report.filename, filename)
+    def test_pdf_report_filename_without_extension(self):
+        """Testing creating a new pdf report object without an extension."""
+        self.filename: str = str(uuid.uuid4())
+
+        pdf_report = PdfReport(filename=self.filename)
+        self.assertEqual(pdf_report.filename, self.filename + ".pdf")
+
+    def test_pdf_report_filename_with_extension(self):
+        """Testing creating a new pdf report object with an extension."""
+        self.filename: str = str(uuid.uuid4()) + ".pdf"
+
+        pdf_report = PdfReport(filename=self.filename)
+        self.assertEqual(pdf_report.filename, self.filename)
 
     def test_generating_pdf_report(self):
         """Testing generating a new pdf report."""
-        june_bill = Bill(amount=300, period="June 2024")  # noqa
+        june_bill = Bill(amount=300, period="June 2024")
         flatmate1 = Flatmate(name="Marry", days_in_house=10)
         flatmate2 = Flatmate(name="Cara", days_in_house=20)
-        filename: str = str(uuid.uuid4())
+        self.filename: str = str(uuid.uuid4()) + ".pdf"
 
-        pdf_report = PdfReport(filename=filename)
-        pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2)
-        self.assertTrue(os.path.exists(filename))
+        pdf_report = PdfReport(filename=self.filename)
+        pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2, bill=june_bill)
+        self.assertTrue(os.path.exists(self.filename))
 
 
 if __name__ == "__main__":
