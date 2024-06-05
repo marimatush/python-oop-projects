@@ -67,4 +67,4 @@ class PdfReport:
         pdf.cell(w=150, h=40, txt=str(flatmate2_pays), ln=1)
         pdf.output(self.filename)
 
-        webbrowser.open(self.filename)
+        webbrowser.open("file://" + os.path.realpath(self.filename))

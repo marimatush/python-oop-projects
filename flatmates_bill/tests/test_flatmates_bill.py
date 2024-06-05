@@ -3,6 +3,7 @@ Tests for flatmates bill app.
 """
 
 import unittest
+from unittest.mock import patch
 import uuid
 import os
 
@@ -76,7 +77,8 @@ class TestPdfReport(unittest.TestCase):
         pdf_report = PdfReport(filename=self.filename)
         self.assertEqual(pdf_report.filename, self.filename)
 
-    def test_generating_pdf_report(self):
+    @patch("webbrowser.open")
+    def test_generating_pdf_report(self, mock_open_pdf):
         """Testing generating a new pdf report."""
         june_bill = Bill(amount=300, period="June 2024")
         flatmate1 = Flatmate(name="Marry", days_in_house=10)
@@ -86,6 +88,10 @@ class TestPdfReport(unittest.TestCase):
         pdf_report = PdfReport(filename=self.filename)
         pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2, bill=june_bill)
         self.assertTrue(os.path.exists(self.filename))
+
+        mock_open_pdf.assert_called_once_with(
+            "file://" + os.path.realpath(self.filename)
+        )
 
 
 if __name__ == "__main__":
