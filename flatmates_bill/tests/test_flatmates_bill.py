@@ -16,17 +16,17 @@ class TestBill(unittest.TestCase):
 
     def test_bill_creation(self):
         """Testing creating a bill object."""
-        bill_amt = 120
-        bill_period = "January 2024"
+        bill_amt: float = 120
+        bill_period: str = "January 2024"
 
-        new_bill = Bill(bill_amt, bill_period)
+        new_bill = Bill(amount=bill_amt, period=bill_period)
         self.assertEqual(new_bill.amount, bill_amt)
         self.assertEqual(new_bill.period, bill_period)
 
     def test_bill_creation_with_negative_amount(self):
-        """Testing creating a bill object with negative amounmt"""
-        bill_amt = -100
-        bill_period = "February 2024"
+        """Testing creating a bill object with negative amount."""
+        bill_amt: float = -100
+        bill_period: str = "February 2024"
 
         new_bill = Bill(amount=bill_amt, period=bill_period)
         self.assertEqual(new_bill.amount, bill_amt)
@@ -38,8 +38,8 @@ class TestFlatmate(unittest.TestCase):
 
     def test_flatmate_creation(self):
         """Testing creating a new flatmate."""
-        name = "Ann"
-        days = 30
+        name: str = "Ann"
+        days: int = 30
 
         new_flatmate = Flatmate(name=name, days_in_house=days)
         self.assertEqual(new_flatmate.name, name)
@@ -60,7 +60,7 @@ class TestPdfReport(unittest.TestCase):
 
     def test_creating_pdf_report_object(self):
         """Testing creating a new pdf report object."""
-        filename = str(uuid.uuid4())
+        filename: str = str(uuid.uuid4())
 
         pdf_report = PdfReport(filename=filename)
         self.assertEqual(pdf_report.filename, filename)
@@ -70,7 +70,7 @@ class TestPdfReport(unittest.TestCase):
         june_bill = Bill(amount=300, period="June 2024")  # noqa
         flatmate1 = Flatmate(name="Marry", days_in_house=10)
         flatmate2 = Flatmate(name="Cara", days_in_house=20)
-        filename = str(uuid.uuid4())
+        filename: str = str(uuid.uuid4())
 
         pdf_report = PdfReport(filename=filename)
         pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2)

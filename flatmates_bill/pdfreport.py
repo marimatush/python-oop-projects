@@ -10,7 +10,16 @@ class PdfReport:
     and the period of the bill.
     """
 
-    def __init__(self, filename):
+    def __init__(self, filename: str) -> None:
+        """
+        Initialize a PdfReport object.
+
+        Args:
+            filename (str): The name of the pdf file to be generated.
+
+        Returns:
+            None
+        """
         self.filename = filename
 
     def generate(self, flatmate1, flatmate2):

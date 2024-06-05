@@ -9,6 +9,6 @@ class Bill:
     total mount and period of the bill.
     """
 
-    def __init__(self, amount, period):
-        self.amount = amount
-        self.period = period
+    def __init__(self, amount: float, period: str) -> None:
+        self.amount: float = amount
+        self.period: str = period
