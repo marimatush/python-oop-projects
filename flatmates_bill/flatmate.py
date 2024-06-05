@@ -12,6 +12,14 @@ class Flatmate:
     """
 
     def __init__(self, name: str, days_in_house: int) -> None:
+        """
+        Initializes a new instance of the Flatmate class.
+
+        Parameters:
+            name (str): The name of the flatmate.
+            days_in_house (int): The number of days the flatmate has stayed
+                                 in the house.
+        """
         self.name: str = name
         self.days_in_house: int = days_in_house
 
