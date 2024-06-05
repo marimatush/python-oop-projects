@@ -48,9 +48,11 @@ class TestFlatmate(unittest.TestCase):
     def test_flatmate_pays(self):
         """Testing paying amount of a flatmate for a period of time."""
         april_bill = Bill(amount=100, period="April 2024")
-        new_flatmate = Flatmate(name="John", days_in_house=15)
+        flatmate_john = Flatmate(name="John", days_in_house=20)
+        flatmate_ann = Flatmate(name="Ann", days_in_house=30)
 
-        self.assertEqual(new_flatmate.pays(april_bill), 50)
+        self.assertEqual(flatmate_john.pays(april_bill, flatmate_ann), 40)
+        self.assertEqual(flatmate_ann.pays(april_bill, flatmate_john), 60)
 
 
 class TestPdfReport(unittest.TestCase):
