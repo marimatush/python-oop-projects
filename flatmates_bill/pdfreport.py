@@ -6,6 +6,8 @@ from .flatmate import Flatmate
 from .bill import Bill
 
 import os
+import webbrowser
+
 from fpdf import FPDF
 from pathlib import Path
 
@@ -64,3 +66,5 @@ class PdfReport:
         pdf.cell(w=300, h=40, txt=f"{flatmate2.name} pays")
         pdf.cell(w=150, h=40, txt=str(flatmate2_pays), ln=1)
         pdf.output(self.filename)
+
+        webbrowser.open(self.filename)
