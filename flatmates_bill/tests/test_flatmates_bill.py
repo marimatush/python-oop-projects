@@ -28,9 +28,8 @@ class TestBill(unittest.TestCase):
         bill_amt: float = -100
         bill_period: str = "February 2024"
 
-        new_bill = Bill(amount=bill_amt, period=bill_period)
-        self.assertEqual(new_bill.amount, bill_amt)
-        self.assertEqual(new_bill.period, bill_period)
+        with self.assertRaises(ValueError):
+            Bill(bill_amt, bill_period)
 
 
 class TestFlatmate(unittest.TestCase):
