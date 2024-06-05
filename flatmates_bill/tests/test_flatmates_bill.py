@@ -6,9 +6,9 @@ import unittest
 import uuid
 import os
 
-from bill import Bill
-from flatmate import Flatmate
-from pdfreport import PdfReport
+from flatmates_bill.bill import Bill
+from flatmates_bill.flatmate import Flatmate
+from flatmates_bill.pdfreport import PdfReport
 
 
 class TestBill(unittest.TestCase):

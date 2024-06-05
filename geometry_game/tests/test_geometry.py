@@ -4,8 +4,8 @@ Tests for geometry game classes.
 
 import unittest
 from unittest.mock import Mock
-from point import Point, GuiPoint
-from rectangle import Rectangle, GuiRectangle
+from geometry_game.point import Point, GuiPoint
+from geometry_game.rectangle import Rectangle, GuiRectangle
 
 
 class TestPointMethods(unittest.TestCase):
