@@ -5,7 +5,9 @@ Manage PDF reports.
 from .flatmate import Flatmate
 from .bill import Bill
 
+import os
 from fpdf import FPDF
+from pathlib import Path
 
 
 class PdfReport:
@@ -35,6 +37,15 @@ class PdfReport:
 
         pdf = FPDF(orientation="P", unit="pt", format="A4")
         pdf.add_page()
+
+        # Get the file path of the image
+        current_file_path: Path = Path(__file__).resolve()
+        image_file_path: str = os.path.join(
+            current_file_path.parent, "files", "house.png"
+        )
+
+        # Add image
+        pdf.image(image_file_path, w=40, h=40)
 
         # Add the title
         pdf.set_font(family="Times", size=24, style="B")
