@@ -2,14 +2,14 @@
 Manage PDF reports.
 """
 
-from .flatmate import Flatmate
-from .bill import Bill
-
 import os
 import webbrowser
 
 from fpdf import FPDF
 from pathlib import Path
+
+from core.flatmate import Flatmate
+from core.bill import Bill
 
 
 class PdfReport:
@@ -43,7 +43,7 @@ class PdfReport:
         # Get the file path of the image
         current_file_path: Path = Path(__file__).resolve()
         image_file_path: str = os.path.join(
-            current_file_path.parent, "files", "house.png"
+            current_file_path.parent.parent, "files", "house.png"
         )
 
         # Add image

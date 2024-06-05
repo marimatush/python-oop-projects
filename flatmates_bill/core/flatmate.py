@@ -2,7 +2,7 @@
 Manage flatmates.
 """
 
-from .bill import Bill
+from core.bill import Bill
 
 
 class Flatmate:

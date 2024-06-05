@@ -7,9 +7,9 @@ from unittest.mock import patch
 import uuid
 import os
 
-from flatmates_bill.bill import Bill
-from flatmates_bill.flatmate import Flatmate
-from flatmates_bill.pdfreport import PdfReport
+from core.bill import Bill
+from core.flatmate import Flatmate
+from core.pdfreport import PdfReport
 
 
 class TestBill(unittest.TestCase):
