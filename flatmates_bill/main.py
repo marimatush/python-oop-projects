@@ -55,4 +55,4 @@ if __name__ == "__main__":
     # Generate report
     pdf_report = PdfReport(filename=f"{the_bill.period}-report.pdf")
     pdf_report.generate(flatmate1=flatmate1, flatmate2=flatmate2, bill=the_bill)
-    print("\nAll righty! Here is your PDF report: Report.pdf")
+    print(f"\nAll righty! Here is your PDF report: {pdf_report.filename}")
