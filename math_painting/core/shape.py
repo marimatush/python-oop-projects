@@ -2,8 +2,8 @@
 Manage shapes.
 """
 
-from core.color import Color
-from core.canvas import Canvas
+from .color import Color
+from .canvas import Canvas
 
 
 class Rectangle:

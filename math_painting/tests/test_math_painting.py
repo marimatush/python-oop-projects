@@ -5,9 +5,9 @@ Tests for the math painting module.
 import unittest
 
 import numpy as np
-from core.shape import Rectangle, Square
-from core.canvas import Canvas
-from core.color import Color
+from math_painting.core.shape import Rectangle, Square
+from math_painting.core.canvas import Canvas
+from math_painting.core.color import Color
 
 
 class TestColor(unittest.TestCase):

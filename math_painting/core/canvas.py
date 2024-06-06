@@ -2,7 +2,7 @@
 Manage canvas.
 """
 
-from core.color import Color
+from .color import Color
 import numpy as np
 from PIL import Image
 

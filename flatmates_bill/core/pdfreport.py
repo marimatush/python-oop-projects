@@ -8,8 +8,8 @@ import webbrowser
 from fpdf import FPDF
 from pathlib import Path
 
-from core.flatmate import Flatmate
-from core.bill import Bill
+from .flatmate import Flatmate
+from .bill import Bill
 
 
 class PdfReport:
