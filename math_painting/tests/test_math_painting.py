@@ -2,7 +2,9 @@
 Tests for the math painting module.
 """
 
+import os
 import unittest
+import uuid
 
 import numpy as np
 from math_painting.core.shape import Rectangle, Square
@@ -114,6 +116,17 @@ class TestCanvas(unittest.TestCase):
         canvas_image = np.zeros((100, 100, 3), dtype=np.uint8)
         canvas_image[:] = [0, 0, 0]
         self.assertTrue((new_canvas.image == canvas_image).all())
+
+    def test_generating_pdf_report(self):
+        """Testing saving an image."""
+        canvas = Canvas(100, 100, Color(0, 0, 0))
+
+        self.filename = str(uuid.uuid4()) + ".png"
+        canvas.make(self.filename)
+        self.assertTrue(os.path.exists(self.filename))
+
+        # Clean up any created files
+        os.remove(self.filename)
 
 
 if __name__ == "__main__":
