@@ -36,3 +36,27 @@ Leeloo pays: 1298.125
 
 All righty! Here is your PDF report: Dec 2023-report.pdf
 ```
+
+## Application # 3 - [Math Painting](./math_painting/)
+The app lets the user provide the start coordinates of geometrical shapes such as
+squares and rectangles, their dimensions, and their colors, and the program produces an image file canvas with all the geometrical shapes drawn in it.
+
+### Example:
+```
+Enter canvas width: _100_
+Enter canvas height: _100_
+Enter canvas color (black or white): _black_
+
+What would you like to draw? (rectangle or square) Enter 'q' to quit: square
+Enter x coordinate: _0_
+Enter y coordinate: _0_
+Enter side length: _35_
+Enter square color red value: _213_
+Enter square color green value: _43_
+Enter square color blue value: _12_
+
+What would you like to draw? (rectangle or square) Enter 'q' to quit: q
+Enter filename: _myart_
+```
+
+![math_painting_example](math_painting/files/example.png)
