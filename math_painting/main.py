@@ -67,18 +67,27 @@ if __name__ == "__main__":
             .lower()
         )
 
-        if user_input_shape == "q":
-            filename: str = input("Enter filename: ")
-            if not filename.endswith(".png"):
-                filename += ".png"
-
-            canvas.make(filename)
-            print("\nDone! Your image has been saved as", filename)
-            break
+        # Draw rectangle
         if user_input_shape == "rectangle":
             draw_rectangle(canvas)
+
+        # Draw square
         elif user_input_shape == "square":
             draw_square(canvas)
+
+        # Quit
+        elif user_input_shape == "q":
+            break
+
+        # Invalid input
         else:
             print("Invalid input. Please enter 'rectangle' or 'square'.")
             continue
+
+# Save image
+filename: str = input("Enter filename: ")
+if not filename.endswith(".png"):
+    filename += ".png"
+
+canvas.make(filename)
+print("\nDone! Your image has been saved as", filename)
