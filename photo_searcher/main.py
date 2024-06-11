@@ -12,9 +12,9 @@ Builder.load_file("frontend.kv")
 class MainScreen(Screen):
     """Main screen class."""
 
-    def search_images(self):
+    def search_image(self):
         """Search images."""
-        pass
+        self.manager.current_screen.ids.img.source = "files/banana_bread.jpeg"
 
 
 class RootWidget(ScreenManager):
