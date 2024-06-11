@@ -89,6 +89,9 @@ class MainScreen(Screen):
         self.manager.current_screen.ids.img.source = img_path
         self.manager.current_screen.ids.img.reload()
 
+        # Delete image
+        self.delete_image(img_path)
+
 
 class RootWidget(ScreenManager):
     """Root widget class."""
