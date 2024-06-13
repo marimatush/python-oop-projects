@@ -107,4 +107,5 @@ class MainApp(App):
         return RootWidget()
 
 
-MainApp().run()
+if __name__ == "__main__":
+    MainApp().run()
