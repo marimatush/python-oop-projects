@@ -60,3 +60,9 @@ Enter filename: _myart_
 ```
 
 ![math_painting_example](math_painting/files/example.png)
+
+## Application # 4 - [Wiki Image Searcher](.photo_searcher)
+The app searches an image on Wikipedia based on the imput text.
+
+### Example:
+<img src="photo_searcher/files/images/example.png" alt="example" width="300" height="auto">

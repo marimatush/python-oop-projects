@@ -1,0 +1,21 @@
+<MainScreen>:
+    GridLayout:
+        cols: 1
+        padding: 10
+        spacing: 10
+        Image:
+            id: img
+            size_hint_y: 80
+        TextInput:
+            id: user_query
+            size_hint_y: 10
+        Button:
+            text: 'Search Image'
+            size_hint_y: 10
+            on_press: root.search_image()
+
+
+<RootWidget>:
+    MainScreen:
+        id: main_screen
+        name: 'main_screen'
