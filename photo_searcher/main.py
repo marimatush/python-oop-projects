@@ -3,6 +3,7 @@ Managing the main app.
 """
 
 import os
+from pathlib import Path
 import random
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -11,13 +12,17 @@ from kivy.lang import Builder
 import requests
 import wikipedia
 
-Builder.load_file("frontend.kv")
+# Get the file path of the image
+current_file_path: Path = Path(__file__).resolve()
+frontend_file_path: str = os.path.join(current_file_path.parent, "frontend.kv")
+Builder.load_file(frontend_file_path)
 
 
 NO_IMG_URL = (
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/"
     "No_image_available.svg/1024px-No_image_available.svg.png"
 )
+IMG_PATH = os.path.join(current_file_path.parent, "files", "response_img")
 
 
 class MainScreen(Screen):
@@ -64,7 +69,7 @@ class MainScreen(Screen):
 
     def download_image(self, url: str):
         """Download the image."""
-        image_path: str = "files/response_img" + self.get_file_extension(url)
+        image_path: str = IMG_PATH + self.get_file_extension(url)
         headers = {"User-Agent": "My User Agent 1.0"}
         response = requests.get(url, headers=headers)
         with open(image_path, "wb") as file:

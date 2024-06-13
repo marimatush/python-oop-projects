@@ -7,7 +7,7 @@ import unittest
 
 from unittest.mock import patch, Mock
 import uuid
-from main import MainScreen, NO_IMG_URL
+from photo_searcher.main import MainScreen, NO_IMG_URL
 
 import wikipedia
 
@@ -28,7 +28,7 @@ class TestPhotoSearcher(unittest.TestCase):
 
         self.assertEqual(MainScreen.get_file_extension(self, url), ".jpg")
 
-    @patch("main.MainScreen.get_wikipedia_page")
+    @patch("photo_searcher.main.MainScreen.get_wikipedia_page")
     def test_get_image_link(self, mock_wiki_page):
         """Testing get image link."""
         # Setup the mock
@@ -45,7 +45,7 @@ class TestPhotoSearcher(unittest.TestCase):
         self.assertEqual(result, img_url)
         mock_wiki_page.assert_called_once_with("query")
 
-    @patch("main.MainScreen.get_wikipedia_page")
+    @patch("photo_searcher.main.MainScreen.get_wikipedia_page")
     def test_get_image_link_for_none_page(self, mock_page):
         """Testing get image link for none page."""
         query = "Python"
@@ -109,10 +109,13 @@ class TestPhotoSearcher(unittest.TestCase):
         )
         mock_random_choice.assert_called_once_with(["Option1", "Option2", "Option3"])
 
-    # @patch("main.MainScreen.download_image.image_path")
+    @patch("photo_searcher.main.IMG_PATH", "test_image_path")
     @patch("requests.get")
     def test_download_image(self, mock_request_get):
         """Testing download image."""
+        # Create a temporary file
+        temp_image_path = "test_image_path.jpg"
+
         # Generate mock resposne
         mock_response = Mock()
         mock_response.content = b"test content"
@@ -121,16 +124,13 @@ class TestPhotoSearcher(unittest.TestCase):
         # Set up the url
         url = "http://example.com/image.jpg"
 
-        # Set up the mock path
-        expected_image_path = "files/response_img.jpg"
-
         screen = MainScreen()
         result = screen.download_image(url)
-        self.assertEqual(result, expected_image_path)
-        self.assertTrue(os.path.exists(expected_image_path))
+        self.assertEqual(result, temp_image_path)
+        self.assertTrue(os.path.exists(temp_image_path))
 
         # Clean up any created files
-        os.remove(expected_image_path)
+        os.remove(temp_image_path)
 
     def test_delete_image(self):
         """Testing delete image."""
