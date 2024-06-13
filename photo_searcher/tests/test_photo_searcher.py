@@ -136,15 +136,17 @@ class TestPhotoSearcher(unittest.TestCase):
         """Testing delete image."""
         # Create a temporary file
         image_path = str(uuid.uuid4()) + ".png"
-        with open(image_path, "wb") as file:
-            file.write(b"test content")
-            screen = MainScreen()
+        with open(image_path, "w"):
+            pass
 
-            # Delete the image
-            screen.delete_image(image_path)
+        # Initialize the MainScreen
+        screen = MainScreen()
 
-            # Check that the file was deleted
-            self.assertFalse(os.path.exists(image_path))
+        # Delete the image
+        screen.delete_image(image_path)
+
+        # Check that the file was deleted
+        self.assertFalse(os.path.exists(image_path))
 
 
 if __name__ == "__main__":
