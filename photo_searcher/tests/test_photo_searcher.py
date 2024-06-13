@@ -2,9 +2,11 @@
 Test photo searcher.
 """
 
+import os
 import unittest
 
 from unittest.mock import patch, Mock
+import uuid
 from main import MainScreen, NO_IMG_URL
 
 import wikipedia
@@ -106,6 +108,43 @@ class TestPhotoSearcher(unittest.TestCase):
             "Option2", auto_suggest=False, redirect=True
         )
         mock_random_choice.assert_called_once_with(["Option1", "Option2", "Option3"])
+
+    # @patch("main.MainScreen.download_image.image_path")
+    @patch("requests.get")
+    def test_download_image(self, mock_request_get):
+        """Testing download image."""
+        # Generate mock resposne
+        mock_response = Mock()
+        mock_response.content = b"test content"
+        mock_request_get.return_value = mock_response
+
+        # Set up the url
+        url = "http://example.com/image.jpg"
+
+        # Set up the mock path
+        expected_image_path = "files/response_img.jpg"
+
+        screen = MainScreen()
+        result = screen.download_image(url)
+        self.assertEqual(result, expected_image_path)
+        self.assertTrue(os.path.exists(expected_image_path))
+
+        # Clean up any created files
+        os.remove(expected_image_path)
+
+    def test_delete_image(self):
+        """Testing delete image."""
+        # Create a temporary file
+        image_path = str(uuid.uuid4()) + ".png"
+        with open(image_path, "wb") as file:
+            file.write(b"test content")
+            screen = MainScreen()
+
+            # Delete the image
+            screen.delete_image(image_path)
+
+            # Check that the file was deleted
+            self.assertFalse(os.path.exists(image_path))
 
 
 if __name__ == "__main__":
